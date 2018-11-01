@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super }}
+<div class="container-fluid">
+
+    <h1>Shopping Cart</h1>
+
+    {% if items %}
+{% for item in items %}
+{% if item.user == request.user %}
+
+
+  <div class="row">
+    <div class="col-md-3">
+      <img src="{{item.item.image.url}}" height=80px;" width="80px;">
+    </div>
+    <div class="product-details">
+      <div class="product-title">{{item.item.name}}</div>
+    </div>
+    <div class="product-price">{{item.item.price}}.00</div>
+    
+    <div class="product-removal">
+      <button class="remove-product">
+       <a href="/remove/{{item.id}}">Remove</a>
+      </button>
+    </div>
+    <div class="product-line-price">{{item.item.price}}.00</div>
+  </div>
+  {% endif %}
+  {% endfor %}
+  
+  <div class="totals">
+  
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">{{total}}.00</div>
+    </div>
+  </div>
+      
+      <button class="checkout btn btn-outline-primary">Checkout</button>
+<a href="/empty">
+      <button class="btn btn-outline-primary">Empty Cart</button>
+    </a>
+</div>
+{% else %}
+<h1>Cart is Empty</h1>
+{% endif %}
+
+{% endblock %}

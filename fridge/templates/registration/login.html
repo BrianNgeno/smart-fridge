@@ -1,0 +1,54 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid" id="one">
+    <div class="row">
+        <!-- Empty div -->
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {% if form.errors %}
+            <p> Password or Username is incorrect </p>
+            {% endif %}
+            <div class="card" id="top">
+
+                <div class="card-header text-center" id="login">
+                    <div class="row">
+                        <h4 style="text-align:center;font-family: 'Sail', cursive;">LocoMotion</h4>
+                        <br>
+                        <img src="../../static/images/mainnav.png" width="220px;" height="100px;" class="img-responsive"
+                            style="margin-left: 50px;">
+
+
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <form action="/accounts/login/" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form%}
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-light btn-sm" value="Log in" style="padding-left: 100px;padding-right: 100px; background-color:#3897f0;color:whitesmoke;">
+                        </div>
+
+                        <input type="hidden" name="next" value="{{next}}">
+
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="card text-center" id="no">
+                <p>Don't have an account? <a href="/accounts/register/" style="text-decoration:none;">sign-up</a></p>
+            </div>
+        </div>
+        <!-- empty div -->
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<div class="row" id="app">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super }}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <a href="{% url 'cart' %}" class="btn btn-outline-dark"><i class="fa fa-shopping-cart" style="font-size:24px"></i>
+        View
+        Cart</a>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    {% for data in items %}
+
+    <div class="card">
+      <img src="{{data.image.url}}" alt="sample11" height="200px;" width="300px;" />
+      <div class="card-body">
+        <h2 style="font-size: 12px;">{{data.name}}</h2>
+        <p> Ksh {{data.price}}</p>
+        <br>
+        <form action="/add/{{data.id}}/" method="post" enctype="multipart/form-data">
+          {%csrf_token%}
+
+          {% bootstrap_form Cartform %}
+          <input type="submit" class="btn btn-outline-secondary" style="font-size: 11px;margin-left: 80px;" value="Add To Cart" >
+            
+        </form>
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+
+  // Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
+
+  var pusher = new Pusher('f102c43c7b54cf8ec7f9', {
+    cluster: 'ap2',
+    forceTLS: true
+  });
+
+  var channel = pusher.subscribe('fridge-channel');
+
+  channel.bind('buy-event', function (data) {
+    alert(JSON.stringify(data));
+  });
+</script>
+
+
+{% endblock %}
