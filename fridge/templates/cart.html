@@ -2,7 +2,10 @@
 {% load bootstrap4 %}
 {% block content %}
 {{ block.super }}
-<div class="container-fluid">
+<div id="img2">
+
+  </div>
+<div class="container-fluid" style="font-family: 'Inconsolata', monospace;" id="cart">
 
     <h1>Shopping Cart</h1>
 
@@ -11,36 +14,35 @@
 {% if item.user == request.user %}
 
 
-  <div class="row">
+  <div class="row" style="margin-top: 10px; margin-bottom: 10px; margin-right: 2px;">
     <div class="col-md-3">
-      <img src="{{item.item.image.url}}" height=80px;" width="80px;">
+      <img src="{{item.item.image.url}}" height=80px;" width="80px;" style="border-radius: 50%;">
     </div>
-    <div class="product-details">
+    <div class="col-md-3">
       <div class="product-title">{{item.item.name}}</div>
     </div>
-    <div class="product-price">{{item.item.price}}.00</div>
+    <div class="col-md-3">ksh {{item.item.price}}</div>
     
-    <div class="product-removal">
-      <button class="remove-product">
+    <div class="col-md-3">
+      <button class="btn btn-outline-primary">
        <a href="/remove/{{item.id}}">Remove</a>
       </button>
     </div>
-    <div class="product-line-price">{{item.item.price}}.00</div>
   </div>
   {% endif %}
   {% endfor %}
   
-  <div class="totals">
+  <div class="row" style="margin-top: 10px; margin-bottom: 10px; margin-right: 2px;">
   
-    <div class="totals-item totals-item-total">
-      <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">{{total}}.00</div>
+    <div class="col-md-3">
+     <button class="btn btn-outline-dark"><i class="fa fa-shopping-cart" style="font-size:24px"></i> Grand Total <br>
+      {{total}}</button>
     </div>
   </div>
       
-      <button class="checkout btn btn-outline-primary">Checkout</button>
+      <button style="margin-top: 10px; margin-bottom: 10px; margin-right: 2px; color:black;" class="checkout btn btn-outline-primary">Checkout</button>
 <a href="/empty">
-      <button class="btn btn-outline-primary">Empty Cart</button>
+      <button  style="margin-top: 10px; margin-bottom: 10px; margin-right: 2px; color:black;"  class="btn btn-outline-primary"><i class="fa fa-shopping-cart" style="font-size:24px"></i> Empty Cart</button>
     </a>
 </div>
 {% else %}

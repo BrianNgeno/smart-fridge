@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super }}
+<div class="container-fluid">
+<h1>Shopping Orders</h1>
+
+{% if items %}
+{% for item in items %}
+{% if item.user == request.user %}
+
+
+<div class="row" style="margin-top: 10px; margin-bottom: 10px; margin-right: 2px;">
+<div class="col-md-3">
+  <img src="{{item.item.image.url}}" height=80px;" width="80px;" style="border-radius: 50%;">
+</div>
+<div class="col-md-3">
+  <div class="product-title">{{item.item.name}}</div>
+</div>
+<div class="col-md-3">ksh {{item.item.price}}</div>
+
+<div class="col-md-3">
+  
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="row" style="margin-top: 10px; margin-bottom: 10px; margin-right: 2px;">
+
+<div class="col-md-3">
+ <button class="btn btn-outline-dark"><i class="fa fa-shopping-cart" style="font-size:24px"></i> Grand Total <br>
+  {{total}}</button>
+</div>
+</div>
+</div>
+{% endif %}
+{% endblock %}

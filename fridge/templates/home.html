@@ -3,6 +3,9 @@
 {% block content %}
 {{ block.super }}
 <div class="container-fluid">
+  <div id="img">
+
+  </div>
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -12,10 +15,11 @@
     </div>
     <div class="col-md-2"></div>
   </div>
-  <div class="row">
+
+  <div class="row" >
     {% for data in items %}
 
-    <div class="card">
+    <div class="card" style="margin-left:10px; margin-right:20px; margin-top:10px; border:none; box-shadow: grey;">
       <img src="{{data.image.url}}" alt="sample11" height="200px;" width="300px;" />
       <div class="card-body">
         <h2 style="font-size: 12px;">{{data.name}}</h2>
@@ -25,10 +29,8 @@
           {%csrf_token%}
 
           {% bootstrap_form Cartform %}
-          <input type="submit" class="btn btn-outline-secondary" style="font-size: 11px;margin-left: 80px;" value="Add To Cart" >
-            
+          <input type="submit" class="btn btn-outline-secondary" style="font-size: 11px;margin-left: 80px;" value="Add To Cart">
         </form>
-
       </div>
     </div>
     {% endfor %}

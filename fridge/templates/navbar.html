@@ -1,0 +1,25 @@
+{% load bootstrap4 %}
+<style>
+    
+</style>
+<nav class="nav">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'fridgehome' %}" class="btn btn-outline-dark;" style="color:white;">Home</a>
+        </div>
+        <div id="mainListDiv" class="col-md-6">
+            <ul class="navlinks" style="list-style: none;">
+                <li><a href="{% url 'cart' %}" class="btn btn-outline-dark;" style="color: white;">View Cart</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script>
+    $('.navTrigger').click(function () {
+        $(this).toggleClass('active');
+        console.log("Clicked menu");
+        $("#mainListDiv").toggleClass("show_list");
+        $("#mainListDiv").fadeIn();
+
+    });
+</script>
